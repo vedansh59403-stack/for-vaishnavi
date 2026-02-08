@@ -32,6 +32,11 @@
       z-index: 9999;
     }
 
+    /* NORMAL CURSOR ON PASSWORD SCREEN */
+    #lockScreen * {
+      cursor: auto;
+    }
+
     #lockBox {
       background: white;
       padding: 30px;
@@ -144,13 +149,14 @@
       }
     }
 
-    /* HEART CURSOR */
+    /* HEART CURSOR (hidden until unlock) */
     .cursor {
       position: fixed;
       font-size: 18px;
       pointer-events: none;
       z-index: 999;
       transform: translate(-50%, -50%);
+      display: none;
     }
 
     /* GIF FADE */
@@ -175,7 +181,7 @@
         cursor: auto;
       }
       .cursor {
-        display: none;
+        display: none !important;
       }
     }
   </style>
@@ -200,7 +206,6 @@
   <!-- MAIN CARD -->
   <div class="card hidden" id="card">
     <h1>Ello Vaishu ❤️</h1>
-
     <p>The best thing that happened to me.</p>
 
     <div id="countdown"></div>
@@ -232,13 +237,14 @@
 
   <script>
     /* PASSWORD */
-    const correctPassword = "onlyus";
+    const correctPassword = "azhighi";
 
     function unlockSite() {
       const input = document.getElementById("passwordInput").value;
       if (input === correctPassword) {
         document.getElementById("lockScreen").style.display = "none";
         document.getElementById("card").classList.remove("hidden");
+        cursor.style.display = "block";
       } else {
         document.getElementById("errorMsg").style.display = "block";
       }
